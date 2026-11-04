@@ -1,0 +1,51 @@
+/* TEMPLATE 2 — VCARD (namespaced: cw-vcard-) */
+.cw-vcard-page {
+  overflow-wrap: break-word; word-break: break-word; max-width: 100%;
+ --cw-accent:#0ea5e9; --cw-ink:#0f172a; --cw-muted:#64748b; --cw-bg:#eef6fb;
+  background:var(--cw-bg); color:var(--cw-ink); font-family:"Inter","Segoe UI",system-ui,sans-serif; font-size:15px; line-height:1.6;
+  padding:clamp(14px,4vh,48px) clamp(12px,4vw,48px); -webkit-font-smoothing:antialiased; }
+.cw-vcard-page *, .cw-vcard-page *::before, .cw-vcard-page *::after { box-sizing:border-box; }
+.cw-vcard-page img { max-width:100%; display:block; }
+.cw-vcard-page p { margin:0 0 1em; }
+.cw-vcard-card { max-width:1000px; margin:0 auto; background:#fff; border-radius:18px; box-shadow:0 18px 50px rgba(15,23,42,0.1); overflow:hidden; display:grid; grid-template-columns:320px 1fr; }
+.cw-vcard-rail { background:linear-gradient(160deg,#0f172a,#1e293b); color:#e2e8f0; padding:clamp(24px,3vw,36px); display:flex; flex-direction:column; gap:12px; align-items:flex-start; }
+.cw-vcard-avatar { width:112px; height:112px; border-radius:50%; overflow:hidden; background:#334155; margin-bottom:6px; }
+.cw-vcard-avatar-img { width:100%; height:100%; object-fit:cover; }
+.cw-vcard-avatar-fallback { display:flex; align-items:center; justify-content:center; width:100%; height:100%; font-size:34px; font-weight:800; color:#94a3b8; }
+.cw-vcard-name { font-size:26px; margin:0; letter-spacing:-0.02em; }
+.cw-vcard-role { color:#7dd3fc; margin:0; font-size:14px; }
+.cw-vcard-loc { color:#94a3b8; margin:0; font-size:13px; }
+.cw-vcard-btn { margin-top:8px; background:var(--cw-accent); color:#062031; text-decoration:none; font-weight:700; padding:11px 20px; border-radius:10px; font-size:14px; }
+.cw-vcard-btn:hover { filter:brightness(1.08); }
+.cw-vcard-social { list-style:none; margin:12px 0 0; padding:0; display:flex; flex-direction:column; gap:8px; }
+.cw-vcard-link { color:#bae6fd; text-decoration:none; font-size:14px; }
+.cw-vcard-link:hover { text-decoration:underline; }
+.cw-vcard-main { padding:clamp(24px,3.5vw,44px); display:grid; gap:clamp(24px,4vh,40px); }
+.cw-vcard-tag { font-size:17px; color:#0369a1; font-weight:600; margin:0; }
+.cw-vcard-prose { color:#334155; }
+.cw-vcard-h2 { font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--cw-accent); margin:0 0 14px; }
+.cw-vcard-chips { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px; }
+.cw-vcard-chips li { background:#e0f2fe; color:#075985; border-radius:999px; padding:6px 13px; font-size:13px; }
+.cw-vcard-list { display:grid; gap:16px; }
+.cw-vcard-item { display:grid; grid-template-columns:150px 1fr; gap:16px; }
+.cw-vcard-item-media { border-radius:10px; overflow:hidden; background:#e2e8f0; }
+.cw-vcard-item-img { width:100%; height:100%; aspect-ratio:1/1; object-fit:cover; }
+.cw-vcard-item-body h3 { margin:0 0 6px; font-size:17px; }
+.cw-vcard-item-body p { color:#475569; font-size:14px; margin:0 0 6px; }
+.cw-vcard-tech { color:var(--cw-accent); font-size:12px; text-transform:uppercase; letter-spacing:0.06em; }
+.cw-vcard-item-links { display:flex; gap:14px; margin:0; }
+.cw-vcard-rows { display:grid; }
+.cw-vcard-row { display:grid; grid-template-columns:150px 1fr; gap:16px; padding:12px 0; border-top:1px solid #e2e8f0; }
+.cw-vcard-row-when { color:var(--cw-muted); font-size:13px; }
+.cw-vcard-row-body { display:grid; gap:2px; }
+.cw-vcard-row-body strong { font-size:15px; }
+.cw-vcard-row-body em { font-style:normal; color:#0369a1; font-size:13px; }
+.cw-vcard-row-body span { color:#475569; font-size:14px; }
+.cw-vcard-certs { list-style:none; margin:0; padding:0; display:grid; gap:10px; }
+.cw-vcard-certs li { padding:12px 0; border-top:1px solid #e2e8f0; font-size:14px; }
+.cw-vcard-meta { color:var(--cw-muted); font-size:13px; }
+.cw-vcard-page [data-cw-reveal] { opacity:0; transform:translateY(14px); transition:opacity .55s ease, transform .55s ease; }
+.cw-vcard-page [data-cw-reveal].is-in { opacity:1; transform:none; }
+.cw-reduced-motion .cw-vcard-page [data-cw-reveal] { opacity:1; transform:none; transition:none; }
+@media (max-width:900px) { .cw-vcard-card { grid-template-columns:1fr; } .cw-vcard-rail { flex-direction:row; flex-wrap:wrap; align-items:center; } .cw-vcard-avatar { width:80px; height:80px; margin:0; } }
+@media (max-width:600px) { .cw-vcard-item, .cw-vcard-row { grid-template-columns:1fr; gap:8px; } .cw-vcard-item-media { max-width:220px; } }

@@ -1,0 +1,152 @@
+/* TEMPLATE 21 — BRUTALIST (namespaced: cw-brutalist-) */
+.cw-brutalist-page {
+  overflow-wrap: break-word; word-break: break-word; max-width: 100%;
+
+  --cw-cobalt: #1b35d8;
+  --cw-black: #0a0a0a;
+  --cw-off: #f3f1ea;
+  --cw-gutter: clamp(18px, 4.5vw, 64px);
+  --cw-max: 1280px;
+  background: var(--cw-off); color: var(--cw-black);
+  font-family: "Archivo", "Arial Black", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.5; -webkit-font-smoothing: antialiased;
+}
+.cw-brutalist-page *, .cw-brutalist-page *::before, .cw-brutalist-page *::after { box-sizing: border-box; }
+.cw-brutalist-page img { max-width: 100%; display: block; }
+.cw-brutalist-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* Bar */
+.cw-brutalist-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  padding: 16px var(--cw-gutter); border-bottom: 3px solid var(--cw-black);
+  background: var(--cw-off); position: sticky; top: 0; z-index: 40;
+}
+.cw-brutalist-bar-name { font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; text-decoration: none; color: var(--cw-black); font-size: 16px; }
+.cw-brutalist-bar-nav { display: flex; gap: 4px; }
+.cw-brutalist-bar-nav a {
+  text-decoration: none; color: var(--cw-black); text-transform: uppercase; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.06em; padding: 8px 12px; border: 2px solid transparent;
+}
+.cw-brutalist-bar-nav a:hover { border-color: var(--cw-black); background: var(--cw-cobalt); color: #fff; }
+.cw-brutalist-bar-toggle {
+  display: none; flex-direction: column; justify-content: space-between; width: 46px; height: 40px;
+  padding: 10px; background: var(--cw-black); border: 3px solid var(--cw-black); cursor: pointer;
+}
+.cw-brutalist-bar-toggle span:not(.cw-brutalist-sr) { display: block; height: 3px; background: var(--cw-off); }
+.cw-brutalist-menu { display: none; }
+
+.cw-brutalist-main { max-width: var(--cw-max); margin: 0 auto; padding: 0 var(--cw-gutter); }
+
+/* Hero */
+.cw-brutalist-hero { display: grid; grid-template-columns: 1.55fr 1fr; gap: clamp(20px, 3vw, 40px); padding: clamp(36px, 7vh, 84px) 0; }
+.cw-brutalist-hero-slab { border: 3px solid var(--cw-black); background: #fff; padding: clamp(22px, 3.5vw, 44px); }
+.cw-brutalist-hero-role { text-transform: uppercase; font-size: 12px; font-weight: 700; letter-spacing: 0.16em; margin: 0 0 18px; background: var(--cw-black); color: var(--cw-off); display: inline-block; padding: 5px 12px; }
+.cw-brutalist-hero-name { font-size: clamp(40px, 8.5vw, 116px); line-height: 0.88; margin: 0; font-weight: 900; letter-spacing: -0.045em; text-transform: uppercase; }
+.cw-brutalist-hero-tag { font-size: clamp(17px, 2vw, 23px); margin: 24px 0 0; max-width: 34ch; font-weight: 500; }
+.cw-brutalist-hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+.cw-brutalist-btn {
+  display: inline-block; text-decoration: none; text-transform: uppercase; font-weight: 800; font-size: 13px;
+  letter-spacing: 0.08em; padding: 13px 22px; border: 3px solid var(--cw-black); background: var(--cw-cobalt);
+  color: #fff; transition: transform 0.12s ease, background 0.18s ease, color 0.18s ease;
+}
+.cw-brutalist-btn:hover { background: var(--cw-black); transform: translate(-2px, -2px); }
+.cw-brutalist-btn--alt { background: var(--cw-off); color: var(--cw-black); }
+.cw-brutalist-btn--alt:hover { background: var(--cw-cobalt); color: #fff; }
+.cw-brutalist-hero-tile { border: 3px solid var(--cw-black); background: var(--cw-cobalt); position: relative; overflow: hidden; }
+.cw-brutalist-hero-img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) contrast(1.15); }
+.cw-brutalist-hero-fallback { display: flex; align-items: center; justify-content: center; min-height: 320px; height: 100%; font-size: 72px; font-weight: 900; color: rgba(255,255,255,0.5); }
+.cw-brutalist-hero-loc { position: absolute; left: 0; bottom: 0; background: var(--cw-black); color: var(--cw-off); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; padding: 7px 12px; }
+
+/* Sections */
+.cw-brutalist-section { padding: clamp(40px, 7vh, 88px) 0; border-top: 3px solid var(--cw-black); }
+.cw-brutalist-h2 { font-size: clamp(28px, 5.5vw, 68px); font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; margin: 0 0 clamp(24px, 4vh, 44px); line-height: 0.9; }
+.cw-brutalist-about { font-size: clamp(17px, 2vw, 23px); max-width: 68ch; font-weight: 500; }
+.cw-brutalist-about p { margin: 0 0 1em; }
+
+/* Chips */
+.cw-brutalist-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.cw-brutalist-chip {
+  display: inline-flex; align-items: center; gap: 10px; border: 3px solid var(--cw-black); background: #fff;
+  padding: 10px 16px; font-weight: 700; text-transform: uppercase; font-size: 13px; letter-spacing: 0.04em;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+.cw-brutalist-chip:hover { background: var(--cw-black); color: var(--cw-off); }
+.cw-brutalist-chip-lvl { font-size: 11px; background: var(--cw-cobalt); color: #fff; padding: 2px 7px; }
+.cw-brutalist-chip:hover .cw-brutalist-chip-lvl { background: var(--cw-off); color: var(--cw-black); }
+
+/* Blocks */
+.cw-brutalist-blocks { display: grid; gap: clamp(20px, 3vw, 34px); }
+.cw-brutalist-block {
+  display: grid; grid-template-columns: 70px 320px 1fr; gap: 0;
+  border: 3px solid var(--cw-black); background: #fff;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+.cw-brutalist-block:hover { transform: translate(-4px, -4px); box-shadow: 10px 10px 0 var(--cw-black); }
+.cw-brutalist-block-idx { display: flex; align-items: center; justify-content: center; background: var(--cw-black); color: var(--cw-off); font-weight: 900; font-size: 20px; border-right: 3px solid var(--cw-black); }
+.cw-brutalist-block-media { border-right: 3px solid var(--cw-black); background: var(--cw-cobalt); }
+.cw-brutalist-block-img { width: 100%; height: 100%; min-height: 200px; object-fit: cover; }
+.cw-brutalist-block-plate { display: flex; align-items: center; justify-content: center; min-height: 200px; height: 100%; font-size: 72px; font-weight: 900; color: rgba(255,255,255,0.45); }
+.cw-brutalist-block-body { padding: clamp(18px, 2.4vw, 30px); }
+.cw-brutalist-block-title { font-size: clamp(22px, 3vw, 38px); font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; margin: 0 0 12px; }
+.cw-brutalist-block-desc { margin: 0 0 16px; max-width: 62ch; }
+.cw-brutalist-tags { list-style: none; margin: 0 0 18px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.cw-brutalist-tags li { border: 2px solid var(--cw-black); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 9px; font-weight: 700; }
+.cw-brutalist-block-links { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* Rows */
+.cw-brutalist-rows { display: grid; }
+.cw-brutalist-row { display: grid; grid-template-columns: 220px 1fr; gap: clamp(16px, 3vw, 40px); padding: 20px 0; border-bottom: 3px solid var(--cw-black); }
+.cw-brutalist-row:first-child { border-top: 3px solid var(--cw-black); }
+.cw-brutalist-row-when { font-weight: 800; text-transform: uppercase; font-size: 12px; letter-spacing: 0.06em; }
+.cw-brutalist-row-body { display: grid; gap: 3px; }
+.cw-brutalist-row-body strong { font-size: clamp(18px, 2vw, 24px); font-weight: 900; text-transform: uppercase; }
+.cw-brutalist-row-body em { font-style: normal; color: var(--cw-cobalt); font-weight: 700; }
+.cw-brutalist-row-body span { max-width: 70ch; }
+
+/* Awards */
+.cw-brutalist-awards { list-style: none; margin: 0; padding: 0; }
+.cw-brutalist-award { display: grid; grid-template-columns: 1.2fr 160px; gap: 8px 20px; padding: 18px 0; border-bottom: 3px solid var(--cw-black); }
+.cw-brutalist-award:first-child { border-top: 3px solid var(--cw-black); }
+.cw-brutalist-award strong { font-size: clamp(18px, 2vw, 24px); font-weight: 900; text-transform: uppercase; }
+.cw-brutalist-award-date { font-weight: 800; text-transform: uppercase; font-size: 12px; text-align: right; }
+.cw-brutalist-award span:last-child { grid-column: 1 / -1; max-width: 70ch; }
+
+/* Contact */
+.cw-brutalist-contact { border-top: 3px solid var(--cw-black); }
+.cw-brutalist-contact-inner { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(20px, 4vw, 56px); }
+.cw-brutalist-mail { display: inline-block; font-size: clamp(20px, 3.6vw, 46px); font-weight: 900; letter-spacing: -0.03em; color: var(--cw-black); text-decoration: none; background: var(--cw-cobalt); color: #fff; padding: 10px 20px; border: 3px solid var(--cw-black); word-break: break-word; }
+.cw-brutalist-mail:hover { background: var(--cw-black); }
+.cw-brutalist-contact-loc { margin-top: 16px; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.1em; }
+.cw-brutalist-contact-list { list-style: none; margin: 0; padding: 0; }
+.cw-brutalist-contact-list li { border-bottom: 3px solid var(--cw-black); padding: 12px 0; }
+.cw-brutalist-contact-list li:first-child { border-top: 3px solid var(--cw-black); }
+.cw-brutalist-link { text-decoration: none; color: var(--cw-black); font-weight: 900; text-transform: uppercase; font-size: 15px; letter-spacing: 0.04em; }
+.cw-brutalist-link:hover { color: var(--cw-cobalt); }
+
+/* Motion */
+.cw-brutalist-page [data-cw-reveal] { opacity: 0; transform: translateY(22px); transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22,1,0.36,1); }
+.cw-brutalist-page [data-cw-reveal].is-in { opacity: 1; transform: none; }
+.cw-reduced-motion .cw-brutalist-page [data-cw-reveal] { opacity: 1; transform: none; transition: none; }
+.cw-reduced-motion .cw-brutalist-block:hover { transform: none; box-shadow: none; }
+
+@media (max-width: 1023px) {
+  .cw-brutalist-hero { grid-template-columns: 1fr; }
+  .cw-brutalist-block { grid-template-columns: 56px 1fr; }
+  .cw-brutalist-block-media { grid-column: 2; border-right: none; border-bottom: 3px solid var(--cw-black); }
+  .cw-brutalist-block-body { grid-column: 2; }
+  .cw-brutalist-contact-inner { grid-template-columns: 1fr; }
+}
+@media (max-width: 767px) {
+  .cw-brutalist-bar-nav { display: none; }
+  .cw-brutalist-bar-toggle { display: flex; }
+  .cw-brutalist-menu { display: none; position: fixed; inset: 0; z-index: 39; background: var(--cw-cobalt); flex-direction: column; padding: 90px var(--cw-gutter) 24px; gap: 0; }
+  .cw-brutalist-menu.is-open { display: flex; }
+  .cw-brutalist-menu a { color: #fff; text-decoration: none; font-weight: 900; text-transform: uppercase; font-size: 28px; letter-spacing: -0.02em; padding: 14px 0; border-bottom: 3px solid rgba(255,255,255,0.35); }
+  .cw-brutalist-row { grid-template-columns: 1fr; gap: 6px; }
+  .cw-brutalist-award { grid-template-columns: 1fr; }
+  .cw-brutalist-award-date { text-align: left; }
+}
+@media (max-width: 400px) {
+  .cw-brutalist-hero-name { font-size: 38px; }
+  .cw-brutalist-h2 { font-size: 30px; }
+}

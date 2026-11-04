@@ -1,0 +1,54 @@
+/* TEMPLATE 3 — DEVELOPER CV (namespaced: cw-devcv-) */
+.cw-devcv-page {
+  overflow-wrap: break-word; word-break: break-word; max-width: 100%;
+ --cw-ink:#0b1220; --cw-accent:#22c55e; --cw-muted:#64748b; --cw-bg:#f1f5f9;
+  background:var(--cw-bg); color:var(--cw-ink); font-family:"Inter","Segoe UI",system-ui,sans-serif; font-size:15px; line-height:1.6;
+  padding:clamp(14px,4vh,44px) clamp(12px,4vw,44px); -webkit-font-smoothing:antialiased; }
+.cw-devcv-page *, .cw-devcv-page *::before, .cw-devcv-page *::after { box-sizing:border-box; }
+.cw-devcv-page img { max-width:100%; display:block; }
+.cw-devcv-page p { margin:0 0 1em; }
+.cw-devcv-sheet { max-width:1060px; margin:0 auto; background:#fff; border-radius:12px; box-shadow:0 16px 44px rgba(11,18,32,0.09); display:grid; grid-template-columns:330px 1fr; overflow:hidden; }
+.cw-devcv-side { background:#0b1220; color:#cbd5e1; padding:clamp(24px,3vw,36px); display:grid; gap:26px; align-content:start; }
+.cw-devcv-name { font-size:25px; margin:0 0 6px; color:#fff; letter-spacing:-0.02em; }
+.cw-devcv-role { color:var(--cw-accent); margin:0; font-size:14px; }
+.cw-devcv-h2 { font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--cw-accent); margin:0 0 12px; }
+.cw-devcv-meta { list-style:none; margin:0; padding:0; display:grid; gap:8px; font-size:13.5px; }
+.cw-devcv-meta a { color:#cbd5e1; text-decoration:none; word-break:break-word; }
+.cw-devcv-meta a:hover { color:var(--cw-accent); }
+.cw-devcv-group { margin-bottom:16px; }
+.cw-devcv-group h3 { font-size:12px; color:#94a3b8; margin:0 0 8px; font-weight:600; }
+.cw-devcv-group ul { list-style:none; margin:0; padding:0; display:grid; gap:9px; }
+.cw-devcv-group li { font-size:13.5px; }
+.cw-devcv-bar { display:block; height:3px; background:#1e293b; margin-top:5px; }
+.cw-devcv-bar i { display:block; height:100%; background:var(--cw-accent); }
+.cw-devcv-edu { margin-bottom:14px; display:grid; gap:2px; }
+.cw-devcv-edu strong { color:#fff; font-size:14px; }
+.cw-devcv-edu span { font-size:13px; }
+.cw-devcv-when { color:#64748b; font-size:12px; }
+.cw-devcv-link { color:#cbd5e1; text-decoration:none; }
+.cw-devcv-link:hover { color:var(--cw-accent); }
+.cw-devcv-main { padding:clamp(24px,3.5vw,44px); display:grid; gap:clamp(22px,4vh,36px); }
+.cw-devcv-block .cw-devcv-h2 { color:#0b1220; border-bottom:2px solid #e2e8f0; padding-bottom:8px; }
+.cw-devcv-prose { color:#334155; }
+.cw-devcv-rows { display:grid; gap:18px; }
+.cw-devcv-row { padding-bottom:14px; border-bottom:1px solid #eef2f7; }
+.cw-devcv-row-head { display:flex; flex-wrap:wrap; gap:4px 12px; align-items:baseline; margin-bottom:6px; }
+.cw-devcv-row-head strong { font-size:16px; }
+.cw-devcv-org { color:var(--cw-accent); font-size:13px; font-weight:600; }
+.cw-devcv-row-head .cw-devcv-when { margin-left:auto; }
+.cw-devcv-row p { color:#475569; font-size:14px; margin:0; }
+.cw-devcv-projs { display:grid; gap:16px; }
+.cw-devcv-proj { padding-bottom:14px; border-bottom:1px solid #eef2f7; }
+.cw-devcv-proj-head { display:flex; justify-content:space-between; gap:14px; align-items:baseline; }
+.cw-devcv-proj-head strong { font-size:16px; }
+.cw-devcv-proj-links { display:flex; gap:12px; }
+.cw-devcv-proj p { color:#475569; font-size:14px; margin:6px 0 0; }
+.cw-devcv-tech { color:#0f766e; font-size:12px; text-transform:uppercase; letter-spacing:0.06em; }
+.cw-devcv-awards { list-style:none; margin:0; padding:0; display:grid; gap:12px; }
+.cw-devcv-awards li { border-left:3px solid var(--cw-accent); padding-left:14px; }
+.cw-devcv-awards p { color:#475569; font-size:14px; margin:4px 0 0; }
+.cw-devcv-page [data-cw-reveal] { opacity:0; transform:translateY(12px); transition:opacity .5s ease, transform .5s ease; }
+.cw-devcv-page [data-cw-reveal].is-in { opacity:1; transform:none; }
+.cw-reduced-motion .cw-devcv-page [data-cw-reveal] { opacity:1; transform:none; transition:none; }
+@media (max-width:900px) { .cw-devcv-sheet { grid-template-columns:1fr; } }
+@media (max-width:600px) { .cw-devcv-row-head .cw-devcv-when { margin-left:0; } .cw-devcv-proj-head { flex-direction:column; gap:4px; } }
