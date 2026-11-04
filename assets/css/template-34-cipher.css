@@ -1,0 +1,337 @@
+/* TEMPLATE 34 — CIPHER (namespaced: cw-cipher-) */
+.cw-cipher-page {
+  overflow-wrap: break-word; word-break: break-word; max-width: 100%;
+
+  --cw-ci-bg: #0a0d0a;
+  --cw-ci-panel: rgba(24, 30, 22, .62);
+  --cw-ci-line: rgba(200, 255, 61, .2);
+  --cw-ci-line-soft: rgba(200, 255, 61, .1);
+  --cw-ci-text: #e9f5d8;
+  --cw-ci-dim: #8fa382;
+  --cw-ci-lime: #c8ff3d;
+  --cw-ci-acid: #e2ff8c;
+  --cw-ci-gutter: clamp(20px, 5vw, 74px);
+  --cw-ci-max: 1180px;
+  --cw-ci-mono: ui-monospace, "SF Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+
+  position: relative;
+  background:
+    radial-gradient(900px 520px at 82% -8%, rgba(200, 255, 61, .1), transparent 60%),
+    var(--cw-ci-bg);
+  color: var(--cw-ci-text);
+  font-family: var(--cw-ci-mono);
+  line-height: 1.62;
+}
+
+.cw-cipher-page *,
+.cw-cipher-page *::before,
+.cw-cipher-page *::after { box-sizing: border-box; }
+
+.cw-cipher-sr {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---------- nav ---------- */
+
+.cw-cipher-nav {
+  position: sticky; top: 0; z-index: 40;
+  display: flex; align-items: center; justify-content: space-between; gap: 18px;
+  padding: 13px var(--cw-ci-gutter);
+  background: rgba(10, 13, 10, .86);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--cw-ci-line);
+}
+.cw-cipher-brand { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; color: inherit; }
+.cw-cipher-brand-glyph {
+  font-size: 12px; color: var(--cw-ci-bg); background: var(--cw-ci-lime);
+  padding: 1px 6px; border-radius: 2px; letter-spacing: .04em;
+}
+.cw-cipher-brand-name { font-size: 14.5px; letter-spacing: .04em; }
+
+.cw-cipher-nav-links { display: flex; gap: 20px; }
+.cw-cipher-nav-links a {
+  color: var(--cw-ci-dim); text-decoration: none; font-size: 13px;
+  border-bottom: 1px solid transparent; padding-bottom: 2px;
+}
+.cw-cipher-nav-links a:hover { color: var(--cw-ci-lime); border-bottom-color: var(--cw-ci-lime); }
+
+.cw-cipher-nav-toggle {
+  display: none; position: relative; width: 42px; height: 36px; padding: 0; cursor: pointer;
+  background: transparent; border: 1px solid var(--cw-ci-line); border-radius: 3px;
+}
+.cw-cipher-nav-toggle span:not(.cw-cipher-sr) {
+  position: absolute; left: 10px; right: 10px; height: 1.6px; background: var(--cw-ci-lime);
+  transition: transform .24s ease, opacity .2s ease;
+}
+.cw-cipher-nav-toggle span:nth-child(1) { top: 11px; }
+.cw-cipher-nav-toggle span:nth-child(2) { top: 17px; }
+.cw-cipher-nav-toggle span:nth-child(3) { top: 23px; }
+.cw-cipher-nav-toggle.is-open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.cw-cipher-nav-toggle.is-open span:nth-child(2) { opacity: 0; }
+.cw-cipher-nav-toggle.is-open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+.cw-cipher-menu { display: none; flex-direction: column; background: #0d120c; border-bottom: 1px solid var(--cw-ci-line); }
+.cw-cipher-menu a { padding: 13px var(--cw-ci-gutter); color: var(--cw-ci-text); text-decoration: none; border-top: 1px solid var(--cw-ci-line-soft); font-size: 13.5px; }
+.cw-cipher-menu.is-open { display: flex; }
+
+/* ---------- hero ---------- */
+
+.cw-cipher-main { display: block; }
+.cw-cipher-hero {
+  position: relative; overflow: hidden;
+  padding: clamp(50px, 7.6vw, 104px) var(--cw-ci-gutter) clamp(34px, 5vw, 60px);
+}
+.cw-cipher-rain { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; opacity: .5; }
+.cw-cipher-hero-grid {
+  position: relative; z-index: 1;
+  max-width: var(--cw-ci-max); margin: 0 auto;
+  display: grid; gap: clamp(26px, 4.6vw, 58px);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  align-items: center;
+}
+.cw-cipher-kicker {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+  margin: 0 0 16px; font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--cw-ci-lime);
+}
+.cw-cipher-bracket { color: var(--cw-ci-dim); }
+.cw-cipher-kicker-hash { margin-left: auto; font-size: 11px; color: var(--cw-ci-dim); letter-spacing: .08em; }
+.cw-cipher-hero-name {
+  margin: 0; font-size: clamp(32px, 6vw, 66px); line-height: 1.06;
+  letter-spacing: -.02em; font-weight: 700;
+}
+.cw-cipher-hero-tagline { margin: 20px 0 0; font-size: clamp(15px, 1.4vw, 18px); color: var(--cw-ci-dim); max-width: 48ch; }
+.cw-cipher-hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+
+.cw-cipher-btn {
+  display: inline-block; padding: 11px 19px; font-size: 13.5px; font-weight: 600;
+  text-decoration: none; color: var(--cw-ci-bg); background: var(--cw-ci-lime);
+  border: 1px solid var(--cw-ci-lime); border-radius: 3px;
+  transition: transform .2s ease, box-shadow .26s ease;
+}
+.cw-cipher-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(200, 255, 61, .24); }
+.cw-cipher-btn--ghost { background: transparent; color: var(--cw-ci-text); border-color: var(--cw-ci-line); }
+.cw-cipher-btn--ghost:hover { border-color: var(--cw-ci-lime); color: var(--cw-ci-lime); box-shadow: none; }
+
+.cw-cipher-art { width: 100%; height: auto; display: block; color: var(--cw-ci-lime); }
+.cw-cipher-ring { transform-origin: 160px 152px; animation: cw-ci-spin 26s linear infinite; }
+.cw-cipher-ring--b { animation-duration: 18s; animation-direction: reverse; }
+@keyframes cw-ci-spin { to { transform: rotate(360deg); } }
+.cw-cipher-core { animation: cw-ci-core 2.6s ease-in-out infinite; }
+@keyframes cw-ci-core {
+  0%, 100% { opacity: .45; r: 7; }
+  50% { opacity: 1; }
+}
+.cw-cipher-nodes circle { animation: cw-ci-node 3.2s ease-in-out infinite; }
+.cw-cipher-nodes circle:nth-child(2n) { animation-delay: .8s; }
+.cw-cipher-nodes circle:nth-child(3n) { animation-delay: 1.6s; }
+@keyframes cw-ci-node { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+
+.cw-cipher-facts {
+  position: relative; z-index: 1;
+  max-width: var(--cw-ci-max); margin: clamp(32px, 5vw, 54px) auto 0;
+  list-style: none; padding: 0;
+  display: grid; gap: 0;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  border-top: 1px solid var(--cw-ci-line);
+}
+.cw-cipher-facts li { padding: 14px 18px 14px 0; }
+.cw-cipher-facts-key {
+  display: block; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--cw-ci-dim); margin-bottom: 4px;
+}
+.cw-cipher-facts-val { font-size: 14.5px; }
+
+/* ---------- sections ---------- */
+
+.cw-cipher-section {
+  max-width: var(--cw-ci-max); margin: 0 auto;
+  padding: clamp(44px, 6.4vw, 84px) var(--cw-ci-gutter);
+  border-top: 1px solid var(--cw-ci-line-soft);
+}
+.cw-cipher-sec-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 14px; margin-bottom: clamp(22px, 3.4vw, 40px); }
+.cw-cipher-sec-slug { font-size: 12px; color: var(--cw-ci-dim); letter-spacing: .08em; }
+.cw-cipher-sec-title { margin: 0; font-size: clamp(21px, 2.8vw, 33px); letter-spacing: -.015em; }
+
+/* ---------- profile ---------- */
+
+.cw-cipher-profile-grid {
+  display: grid; gap: clamp(24px, 4vw, 48px);
+  grid-template-columns: minmax(0, .74fr) minmax(0, 1.26fr); align-items: start;
+}
+.cw-cipher-profile-media { position: relative; }
+.cw-cipher-profile-photo, .cw-cipher-profile-fallback {
+  width: 100%; max-width: 310px; display: block; aspect-ratio: 4 / 5; object-fit: cover;
+  border: 1px solid var(--cw-ci-line); border-radius: 3px;
+  filter: grayscale(1) contrast(1.1);
+  transition: filter .4s ease;
+}
+.cw-cipher-profile-media:hover .cw-cipher-profile-photo { filter: none; }
+.cw-cipher-profile-fallback {
+  display: flex; align-items: center; justify-content: center;
+  background: repeating-linear-gradient(45deg, #12180f, #12180f 8px, #161d12 8px, #161d12 16px);
+  font-size: clamp(38px, 6vw, 58px); font-weight: 700; color: var(--cw-ci-lime);
+}
+.cw-cipher-profile-fallback svg { width: 100%; height: 100%; }
+.cw-cipher-profile-tag {
+  display: block; margin-top: 8px; font-size: 10.5px; letter-spacing: .12em; color: var(--cw-ci-dim);
+}
+.cw-cipher-profile-body p { margin: 0 0 15px; color: var(--cw-ci-dim); max-width: 62ch; }
+.cw-cipher-profile-body p:first-child { color: var(--cw-ci-text); font-size: 16.5px; }
+
+/* ---------- suite ---------- */
+
+.cw-cipher-suite {
+  display: grid; gap: clamp(18px, 2.6vw, 30px);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+.cw-cipher-suite-group {
+  padding: 18px 20px; border: 1px solid var(--cw-ci-line); border-radius: 4px;
+  background: var(--cw-ci-panel);
+}
+.cw-cipher-suite-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 11px; }
+.cw-cipher-suite-idx { font-size: 11px; color: var(--cw-ci-lime); }
+.cw-cipher-suite-cat { margin: 0; font-size: 14.5px; }
+.cw-cipher-suite-list { list-style: none; margin: 0; padding: 0; }
+.cw-cipher-suite-list li {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 7px 0; border-bottom: 1px solid var(--cw-ci-line-soft); font-size: 14px;
+}
+.cw-cipher-suite-list li:last-child { border-bottom: 0; }
+.cw-cipher-suite-name { min-width: 0; }
+.cw-cipher-suite-bytes { display: inline-flex; gap: 3px; flex: none; }
+.cw-cipher-suite-bytes i {
+  width: 12px; height: 6px; display: block; background: var(--cw-ci-line); border-radius: 1px;
+  transition: background .4s ease;
+}
+.cw-cipher-suite-bytes i.is-on { background: var(--cw-ci-lime); }
+
+/* ---------- research / hexdump ---------- */
+
+.cw-cipher-dump { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.cw-cipher-dump-row {
+  display: grid; gap: 6px 20px;
+  grid-template-columns: 62px minmax(0, 1fr) minmax(0, .62fr);
+  align-items: start;
+  padding: 18px 0; border-bottom: 1px dashed var(--cw-ci-line-soft);
+  transition: background .3s ease;
+}
+.cw-cipher-dump-row:first-child { border-top: 1px dashed var(--cw-ci-line-soft); }
+.cw-cipher-dump-row:hover { background: rgba(200, 255, 61, .04); }
+.cw-cipher-dump-off { font-size: 11.5px; color: var(--cw-ci-dim); padding-top: 4px; }
+.cw-cipher-dump-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 12px; margin-bottom: 8px; }
+.cw-cipher-dump-name { margin: 0; font-size: clamp(17px, 2vw, 22px); letter-spacing: -.01em; }
+.cw-cipher-dump-cat { font-size: 11px; color: var(--cw-ci-lime); letter-spacing: .1em; text-transform: uppercase; }
+.cw-cipher-dump-desc { margin: 0 0 13px; color: var(--cw-ci-dim); font-size: 14.5px; max-width: 58ch; }
+.cw-cipher-dump-bytes { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 13px; padding: 0; }
+.cw-cipher-dump-bytes li {
+  font-size: 11px; padding: 2px 8px; border: 1px solid var(--cw-ci-line); border-radius: 2px; color: var(--cw-ci-text);
+}
+.cw-cipher-dump-links { display: flex; flex-wrap: wrap; gap: 16px; }
+.cw-cipher-dump-link { font-size: 12.5px; color: var(--cw-ci-lime); text-decoration: none; border-bottom: 1px solid var(--cw-ci-line); }
+.cw-cipher-dump-link:hover { border-color: var(--cw-ci-lime); }
+.cw-cipher-dump-media { overflow: hidden; border: 1px solid var(--cw-ci-line); border-radius: 3px; }
+.cw-cipher-dump-img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; filter: grayscale(1) contrast(1.05); transition: filter .45s ease; }
+.cw-cipher-dump-row:hover .cw-cipher-dump-img { filter: none; }
+
+/* ---------- path ---------- */
+
+.cw-cipher-path { list-style: none; margin: 0; padding: 0; }
+.cw-cipher-path-row {
+  display: grid; gap: 4px 18px;
+  grid-template-columns: 52px minmax(0, 126px) minmax(0, 1fr);
+  padding: 15px 0; border-bottom: 1px solid var(--cw-ci-line-soft);
+}
+.cw-cipher-path-row:last-child { border-bottom: 0; }
+.cw-cipher-path-tag {
+  font-size: 10.5px; letter-spacing: .1em; color: var(--cw-ci-bg); background: var(--cw-ci-lime);
+  padding: 2px 6px; text-align: center; align-self: start; border-radius: 2px;
+}
+.cw-cipher-path-when { font-size: 12px; color: var(--cw-ci-dim); }
+.cw-cipher-path-title { margin: 0 0 3px; font-size: clamp(16px, 1.8vw, 20px); }
+.cw-cipher-path-org { margin: 0 0 6px; font-size: 13.5px; color: var(--cw-ci-lime); }
+.cw-cipher-path-desc { margin: 0 0 8px; color: var(--cw-ci-dim); font-size: 14.5px; max-width: 62ch; }
+.cw-cipher-path-link { font-size: 12.5px; color: var(--cw-ci-lime); text-decoration: none; border-bottom: 1px solid var(--cw-ci-line); }
+
+/* ---------- writeups ---------- */
+
+.cw-cipher-notes { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.cw-cipher-note {
+  padding: 18px 20px; border: 1px solid var(--cw-ci-line); border-radius: 4px; background: var(--cw-ci-panel);
+  transition: border-color .3s ease;
+}
+.cw-cipher-note:hover { border-color: rgba(200, 255, 61, .5); }
+.cw-cipher-note-top { display: flex; align-items: baseline; gap: 9px; margin-bottom: 8px; }
+.cw-cipher-note-mark { color: var(--cw-ci-lime); font-size: 14px; flex: none; }
+.cw-cipher-note-title { margin: 0; font-size: 15.5px; letter-spacing: -.01em; }
+.cw-cipher-note-link { color: inherit; text-decoration: none; border-bottom: 1px solid var(--cw-ci-line); }
+.cw-cipher-note-link:hover { color: var(--cw-ci-lime); border-color: var(--cw-ci-lime); }
+.cw-cipher-note-desc { margin: 0 0 10px; font-size: 14px; color: var(--cw-ci-dim); }
+.cw-cipher-note-meta { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 11px; color: var(--cw-ci-dim); letter-spacing: .06em; }
+
+/* ---------- contact ---------- */
+
+.cw-cipher-contact-block {
+  max-width: 680px; padding: clamp(22px, 3vw, 34px);
+  border: 1px solid var(--cw-ci-line); border-radius: 4px; background: var(--cw-ci-panel);
+}
+.cw-cipher-contact-lead { margin: 0 0 16px; font-size: clamp(17px, 2.2vw, 24px); letter-spacing: -.015em; }
+.cw-cipher-contact-mail {
+  display: inline-block; margin-bottom: 18px; font-size: clamp(14px, 1.7vw, 18px);
+  color: var(--cw-ci-lime); text-decoration: none;
+  border-bottom: 1px solid var(--cw-ci-line); overflow-wrap: anywhere;
+}
+.cw-cipher-contact-links { list-style: none; display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 0; padding: 0; }
+.cw-cipher-contact-links a { color: var(--cw-ci-text); text-decoration: none; font-size: 14px; border-bottom: 1px solid transparent; }
+.cw-cipher-contact-links a:hover { color: var(--cw-ci-lime); border-color: var(--cw-ci-lime); }
+
+.cw-cipher-foot {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px;
+  margin-top: clamp(30px, 4.4vw, 52px); padding-top: 16px;
+  border-top: 1px solid var(--cw-ci-line);
+  font-size: 11.5px; letter-spacing: .06em; color: var(--cw-ci-dim);
+}
+.cw-cipher-foot-hash { color: var(--cw-ci-lime); }
+.cw-cipher-foot-mark { margin-left: auto; letter-spacing: .18em; text-transform: uppercase; font-size: 10.5px; color: var(--cw-ci-lime); }
+
+/* ---------- reveal ---------- */
+
+.cw-cipher-page [data-cw-reveal] {
+  opacity: 0; transform: translateY(14px);
+  transition: opacity .6s ease, transform .6s cubic-bezier(.22, 1, .36, 1);
+}
+.cw-cipher-page [data-cw-reveal].is-in { opacity: 1; transform: none; }
+
+/* ---------- motion preferences ---------- */
+
+.cw-reduced-motion .cw-cipher-ring,
+.cw-reduced-motion .cw-cipher-core,
+.cw-reduced-motion .cw-cipher-nodes circle { animation: none; }
+.cw-reduced-motion .cw-cipher-page [data-cw-reveal] { opacity: 1; transform: none; transition: none; }
+.cw-reduced-motion .cw-cipher-suite-bytes i,
+.cw-reduced-motion .cw-cipher-profile-photo,
+.cw-reduced-motion .cw-cipher-dump-img { transition: none; }
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 1023px) {
+  .cw-cipher-hero-grid { grid-template-columns: 1fr; }
+  .cw-cipher-hero-art { max-width: 400px; }
+  .cw-cipher-profile-grid { grid-template-columns: 1fr; }
+  .cw-cipher-profile-photo, .cw-cipher-profile-fallback { max-width: 240px; }
+  .cw-cipher-dump-row { grid-template-columns: 58px minmax(0, 1fr); }
+  .cw-cipher-dump-media { grid-column: 1 / -1; }
+}
+
+@media (max-width: 767px) {
+  .cw-cipher-nav-links { display: none; }
+  .cw-cipher-nav-toggle { display: block; }
+  .cw-cipher-hero { padding-top: 42px; }
+  .cw-cipher-kicker-hash { margin-left: 0; }
+  .cw-cipher-path-row { grid-template-columns: 48px minmax(0, 1fr); }
+  .cw-cipher-path-when { grid-column: 2; }
+  .cw-cipher-path-body { grid-column: 1 / -1; }
+  .cw-cipher-foot { flex-direction: column; align-items: flex-start; }
+  .cw-cipher-foot-mark { margin-left: 0; }
+}

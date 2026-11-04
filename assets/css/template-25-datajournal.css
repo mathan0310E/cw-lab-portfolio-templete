@@ -1,0 +1,142 @@
+/* TEMPLATE 25 — DATA JOURNAL (namespaced: cw-datajournal-) */
+.cw-datajournal-page {
+  overflow-wrap: break-word; word-break: break-word; max-width: 100%;
+
+  --cw-navy: #12233d;
+  --cw-navy-2: #1d3a5f;
+  --cw-teal: #0f766e;
+  --cw-teal-2: #14958a;
+  --cw-ink: #1b2530;
+  --cw-grey: #667487;
+  --cw-line: #dde4ec;
+  --cw-bg: #ffffff;
+  --cw-bg-2: #f4f7fa;
+  --cw-gutter: clamp(20px, 5vw, 80px);
+  --cw-max: 1200px;
+  background: var(--cw-bg); color: var(--cw-ink);
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased;
+}
+.cw-datajournal-page *, .cw-datajournal-page *::before, .cw-datajournal-page *::after { box-sizing: border-box; }
+.cw-datajournal-page img { max-width: 100%; display: block; }
+.cw-datajournal-page p { margin: 0 0 1.1em; }
+.cw-datajournal-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* Bar */
+.cw-datajournal-bar { display: flex; align-items: center; gap: 16px; padding: 16px var(--cw-gutter); border-bottom: 1px solid var(--cw-line); background: var(--cw-bg); position: sticky; top: 0; z-index: 30; flex-wrap: wrap; }
+.cw-datajournal-bar-logo { color: var(--cw-teal); font-size: 20px; }
+.cw-datajournal-bar-name { font-weight: 700; color: var(--cw-navy); }
+.cw-datajournal-bar-nav { display: flex; gap: 18px; margin-left: auto; flex-wrap: wrap; }
+.cw-datajournal-bar-nav a { font-size: 13px; color: var(--cw-grey); text-decoration: none; }
+.cw-datajournal-bar-nav a:hover { color: var(--cw-teal); }
+.cw-datajournal-bar-toggle { display: none; flex-direction: column; justify-content: space-between; width: 40px; height: 30px; padding: 6px 4px; background: none; border: none; cursor: pointer; margin-left: auto; }
+.cw-datajournal-bar-toggle span:not(.cw-datajournal-sr) { display: block; height: 1.5px; background: var(--cw-navy); }
+.cw-datajournal-menu { display: none; }
+
+.cw-datajournal-main { max-width: var(--cw-max); margin: 0 auto; padding: 0 var(--cw-gutter); }
+
+/* Hero */
+.cw-datajournal-hero { padding: clamp(44px, 9vh, 110px) 0 clamp(30px, 5vh, 60px); }
+.cw-datajournal-hero-kicker { color: var(--cw-teal); font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; margin: 0 0 18px; }
+.cw-datajournal-hero-name { font-size: clamp(38px, 7vw, 84px); line-height: 1.04; margin: 0; color: var(--cw-navy); font-weight: 800; letter-spacing: -0.03em; }
+.cw-datajournal-hero-tag { font-size: clamp(17px, 2vw, 22px); color: #40506a; margin: 22px 0 0; max-width: 48ch; }
+.cw-datajournal-hero-strip { display: flex; align-items: flex-end; gap: 8px; height: 60px; margin-top: 34px; }
+.cw-datajournal-hero-strip span { flex: 1; background: linear-gradient(180deg, var(--cw-teal), rgba(15,118,110,0.25)); }
+.cw-datajournal-hero-strip span:nth-child(1) { height: 40%; }
+.cw-datajournal-hero-strip span:nth-child(2) { height: 70%; }
+.cw-datajournal-hero-strip span:nth-child(3) { height: 52%; }
+.cw-datajournal-hero-strip span:nth-child(4) { height: 88%; }
+.cw-datajournal-hero-strip span:nth-child(5) { height: 62%; }
+.cw-datajournal-hero-strip span:nth-child(6) { height: 96%; }
+.cw-datajournal-hero-strip span:nth-child(7) { height: 74%; }
+.cw-datajournal-hero-strip span:nth-child(8) { height: 100%; }
+
+/* Sections */
+.cw-datajournal-section { padding: clamp(40px, 7vh, 84px) 0; border-top: 1px solid var(--cw-line); }
+.cw-datajournal-sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: clamp(22px, 4vh, 40px); }
+.cw-datajournal-sec-num { color: var(--cw-teal); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; }
+.cw-datajournal-sec-title { font-size: clamp(22px, 3vw, 34px); margin: 0; color: var(--cw-navy); font-weight: 800; letter-spacing: -0.02em; }
+.cw-datajournal-prose { max-width: 72ch; font-size: clamp(16px, 1.7vw, 18px); }
+
+/* Toolkit */
+.cw-datajournal-toolkit { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: clamp(22px, 3vw, 44px); }
+.cw-datajournal-tool-group h3 { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cw-teal); margin: 0 0 14px; }
+.cw-datajournal-tool-group ul { list-style: none; margin: 0; padding: 0; }
+.cw-datajournal-tool-group li { position: relative; padding: 8px 0; border-bottom: 1px solid var(--cw-line); display: grid; gap: 6px; }
+.cw-datajournal-bar { display: block; height: 3px; background: var(--cw-bg-2); }
+.cw-datajournal-bar::after { content: ""; display: block; height: 100%; width: var(--v, 0%); background: var(--cw-teal); }
+
+/* Cases */
+.cw-datajournal-cases { display: grid; gap: 24px; }
+.cw-datajournal-case { border: 1px solid var(--cw-line); background: var(--cw-bg); padding: clamp(20px, 2.6vw, 32px); border-left: 4px solid var(--cw-teal); }
+.cw-datajournal-case-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 14px; flex-wrap: wrap; }
+.cw-datajournal-case-ref { font-size: 12px; color: var(--cw-teal); font-weight: 700; }
+.cw-datajournal-case-title { font-size: clamp(20px, 2.4vw, 28px); margin: 0; color: var(--cw-navy); font-weight: 700; }
+.cw-datajournal-case-year { margin-left: auto; font-size: 12px; color: var(--cw-grey); }
+.cw-datajournal-case-media { margin-bottom: 16px; overflow: hidden; background: var(--cw-bg-2); }
+.cw-datajournal-case-img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.cw-datajournal-case-desc { color: #40506a; }
+.cw-datajournal-case-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1px; background: var(--cw-line); border: 1px solid var(--cw-line); margin: 18px 0; }
+.cw-datajournal-case-field { background: var(--cw-bg-2); padding: 16px 18px; display: grid; gap: 6px; align-content: start; }
+.cw-datajournal-case-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cw-teal); font-weight: 700; }
+.cw-datajournal-case-value { font-size: 14px; color: var(--cw-ink); }
+.cw-datajournal-case-tech { display: grid; gap: 8px; margin-bottom: 16px; }
+.cw-datajournal-case-tech ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.cw-datajournal-case-tech li { font-size: 12px; color: var(--cw-navy); border: 1px solid var(--cw-line); background: var(--cw-bg-2); padding: 4px 10px; }
+.cw-datajournal-case-links { display: flex; gap: 20px; }
+.cw-datajournal-link { color: var(--cw-teal); text-decoration: none; font-size: 13px; font-weight: 600; }
+.cw-datajournal-link:hover { text-decoration: underline; }
+
+/* Research */
+.cw-datajournal-research { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--cw-line); }
+.cw-datajournal-res-item { display: grid; grid-template-columns: 130px 1fr 110px; gap: 18px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid var(--cw-line); }
+.cw-datajournal-res-kind { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cw-teal); }
+.cw-datajournal-res-body { display: grid; gap: 4px; }
+.cw-datajournal-res-body strong { font-size: 17px; color: var(--cw-navy); }
+.cw-datajournal-res-body span { color: #40506a; font-size: 14px; }
+.cw-datajournal-res-date { font-size: 12px; color: var(--cw-grey); text-align: right; }
+
+/* Timeline */
+.cw-datajournal-timeline { list-style: none; margin: 0; padding: 0; }
+.cw-datajournal-tl { display: grid; grid-template-columns: 190px 1fr; gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--cw-line); }
+.cw-datajournal-tl-when { font-size: 12px; color: var(--cw-teal); font-weight: 600; padding-top: 3px; }
+.cw-datajournal-tl-body { display: grid; gap: 3px; }
+.cw-datajournal-tl-body strong { font-size: 18px; color: var(--cw-navy); }
+.cw-datajournal-tl-body em { font-style: normal; font-size: 13px; color: var(--cw-navy-2); }
+.cw-datajournal-tl-body span { color: #40506a; font-size: 15px; }
+
+/* Certs */
+.cw-datajournal-certs { list-style: none; margin: 0; padding: 0; }
+.cw-datajournal-cert { display: flex; align-items: baseline; justify-content: space-between; gap: 18px; padding: 14px 0; border-bottom: 1px solid var(--cw-line); flex-wrap: wrap; }
+.cw-datajournal-cert-name { font-weight: 600; color: var(--cw-navy); }
+.cw-datajournal-cert-meta { font-size: 12px; color: var(--cw-grey); }
+
+/* Contact */
+.cw-datajournal-contact { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(24px, 4vw, 56px); }
+.cw-datajournal-mail { color: var(--cw-navy); text-decoration: none; font-size: clamp(20px, 3vw, 34px); font-weight: 700; border-bottom: 2px solid var(--cw-teal); padding-bottom: 3px; word-break: break-word; }
+.cw-datajournal-mail:hover { color: var(--cw-teal); }
+.cw-datajournal-contact-loc { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cw-grey); margin-top: 16px; }
+.cw-datajournal-contact-list { list-style: none; margin: 0; padding: 0; }
+.cw-datajournal-contact-list li { padding: 12px 0; border-bottom: 1px solid var(--cw-line); }
+
+/* Motion */
+.cw-datajournal-page [data-cw-reveal] { opacity: 0; transform: translateY(18px); transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.22,1,0.36,1); }
+.cw-datajournal-page [data-cw-reveal].is-in { opacity: 1; transform: none; }
+.cw-reduced-motion .cw-datajournal-page [data-cw-reveal] { opacity: 1; transform: none; transition: none; }
+
+@media (max-width: 1023px) {
+  .cw-datajournal-res-item { grid-template-columns: 110px 1fr; }
+  .cw-datajournal-res-date { grid-column: 2; text-align: left; }
+  .cw-datajournal-contact { grid-template-columns: 1fr; }
+}
+@media (max-width: 767px) {
+  .cw-datajournal-bar-nav { display: none; }
+  .cw-datajournal-bar-toggle { display: flex; }
+  .cw-datajournal-menu { display: none; position: fixed; inset: 0; z-index: 29; background: #fff; flex-direction: column; padding: 80px var(--cw-gutter) 24px; }
+  .cw-datajournal-menu.is-open { display: flex; }
+  .cw-datajournal-menu a { text-decoration: none; color: var(--cw-navy); font-size: 18px; padding: 16px 0; border-bottom: 1px solid var(--cw-line); }
+  .cw-datajournal-tl { grid-template-columns: 1fr; gap: 4px; }
+}
+@media (max-width: 400px) {
+  .cw-datajournal-hero-name { font-size: 32px; }
+}

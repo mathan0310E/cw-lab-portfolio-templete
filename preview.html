@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Template Preview Gallery — CWLABS</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<style>
+  :root {
+    --ink: #0b1220;
+    --muted: #5b6472;
+    --line: #e3e7ee;
+    --bg: #f6f7f9;
+    --card: #ffffff;
+    --accent: #0f766e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 15px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  header {
+    padding: 56px 32px 32px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .eyebrow {
+    font-size: 12px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700; margin: 0 0 14px;
+  }
+  h1 { font-size: clamp(28px, 4vw, 46px); line-height: 1.08; margin: 0 0 14px; letter-spacing: -.02em; }
+  header p { max-width: 62ch; color: var(--muted); margin: 0 0 22px; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .links a {
+    display: inline-block; padding: 9px 15px; border-radius: 8px;
+    border: 1px solid var(--line); background: #fff; color: var(--ink);
+    text-decoration: none; font-size: 13.5px; font-weight: 600;
+  }
+  .links a:hover { border-color: var(--accent); color: var(--accent); }
+  .links a.primary { background: var(--ink); border-color: var(--ink); color: #fff; }
+  h2.group {
+    max-width: 1400px; margin: 34px auto 0; padding: 0 32px;
+    font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted);
+  }
+  main {
+    max-width: 1400px; margin: 0 auto; padding: 16px 32px 72px;
+    display: grid; gap: 22px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    overflow: hidden; display: flex; flex-direction: column;
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(11,18,32,.10); border-color: #cfd6e2; }
+  .thumb { display: block; aspect-ratio: 16 / 11; background: #eef1f5; overflow: hidden; }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .meta { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .row { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+  .name { font-weight: 700; font-size: 15px; }
+  .id { font: 11.5px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: var(--muted); }
+  .desc { color: var(--muted); font-size: 13px; margin: 0; flex: 1; }
+  .acts { display: flex; gap: 8px; margin-top: 6px; }
+  .acts a {
+    flex: 1; text-align: center; text-decoration: none; font-size: 12.5px; font-weight: 600;
+    padding: 8px 10px; border-radius: 7px; border: 1px solid var(--line); color: var(--ink);
+  }
+  .acts a:hover { border-color: var(--accent); color: var(--accent); }
+  .acts a.primary { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .badge {
+    display: inline-block; font-size: 10.5px; font-weight: 700; letter-spacing: .06em;
+    text-transform: uppercase; padding: 3px 7px; border-radius: 5px;
+    background: #e7f5f2; color: #0f766e;
+  }
+  .badge.classic { background: #eceff4; color: #55607a; }
+  footer { max-width: 1400px; margin: 0 auto; padding: 0 32px 60px; color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<header>
+  <p class="eyebrow">CWLABS Portfolio Builder</p>
+  <h1>Template preview gallery</h1>
+  <p>
+    Every template below is rendered from the same normalised portfolio record, using the
+    same renderer that powers the published page. Nothing here is a hardcoded mockup.
+  </p>
+  <div class="links">
+    <a class="primary" href="index.html">Open the builder</a>
+    <a href="portfolio.html?preview=1">Full-page preview</a>
+    <a href="assets/thumbnails/template-18.svg">Sample thumbnail</a>
+  </div>
+</header>
+
+<h2 class="group">Cybersecurity templates — 4</h2>
+<main id="cyber"></main>
+<h2 class="group">Animated &amp; illustrated templates — 5</h2>
+<main id="animated"></main>
+<h2 class="group">New premium templates — 10</h2>
+<main id="new"></main>
+<h2 class="group">Original templates — 7</h2>
+<main id="classic"></main>
+
+<footer>
+  Preview links use <code>portfolio.html?preview=1&amp;t=&lt;id&gt;</code>, which renders your
+  current draft through the chosen template without changing your saved selection.
+</footer>
+
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/anim.js"></script>
+<script src="assets/js/adapter.js"></script>
+<script src="assets/js/registry.js"></script>
+<script src="assets/js/sample-data.js"></script>
+<script src="assets/js/store.js"></script>
+<script>
+(function () {
+  "use strict";
+  var U = CW.util;
+  var all = CW.registry.all.slice().sort(function (a, b) {
+    function n(id) { return parseInt(String(id).replace(/[^0-9]/g, ""), 10) || 0; }
+    return n(a.id) - n(b.id);
+  });
+
+  function card(t) {
+    var n = parseInt(String(t.id).replace(/[^0-9]/g, ""), 10);
+    var label = n >= 33 ? "Cyber" : (n >= 28 ? "Animated" : (n >= 18 ? "New" : "Classic"));
+    var badgeCls = n >= 18 ? "" : " classic";
+    return '<article class="card">' +
+      '<a class="thumb" href="portfolio.html?preview=1&t=' + U.escUrl(t.id) + '">' +
+        '<img src="' + U.escUrl(t.thumb) + '" alt="' + U.esc(t.name + " template preview") + '" loading="lazy" decoding="async">' +
+      "</a>" +
+      '<div class="meta">' +
+        '<div class="row"><span class="name">' + U.esc(t.name) + "</span>" +
+          '<span class="badge' + badgeCls + '">' + label + "</span></div>" +
+        '<span class="id">' + U.esc(t.id) + "</span>" +
+        '<p class="desc">' + U.esc(t.description || "") + "</p>" +
+        '<div class="acts">' +
+          '<a class="primary" href="portfolio.html?preview=1&t=' + U.escUrl(t.id) + '">Preview</a>' +
+          '<a href="index.html?t=' + U.escUrl(t.id) + '">Edit</a>' +
+        "</div>" +
+      "</div>" +
+    "</article>";
+  }
+
+  function num(t) { return parseInt(String(t.id).replace(/[^0-9]/g, ""), 10); }
+  document.getElementById("cyber").innerHTML = all.filter(function (t) { return num(t) >= 33; }).map(card).join("");
+  document.getElementById("animated").innerHTML = all.filter(function (t) { return num(t) >= 28 && num(t) < 33; }).map(card).join("");
+  document.getElementById("new").innerHTML = all.filter(function (t) { return num(t) >= 18 && num(t) < 28; }).map(card).join("");
+  document.getElementById("classic").innerHTML = all.filter(function (t) { return num(t) < 18; }).map(card).join("");
+})();
+</script>
+</body>
+</html>

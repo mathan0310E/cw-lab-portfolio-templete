@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CWLABS — Template screenshots</title>
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<style>
+  body { margin:0; background:#0f1115; color:#e8eaf0;
+         font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  header { padding:48px 32px 8px; max-width:1500px; margin:0 auto; }
+  h1 { margin:0 0 8px; font-size:clamp(24px,3vw,38px); letter-spacing:-.02em; }
+  header p { color:#9aa3b2; margin:0; max-width:70ch; }
+  h2 { max-width:1500px; margin:40px auto 0; padding:0 32px;
+       font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:#7f8896; }
+  main { max-width:1500px; margin:0 auto; padding:14px 32px 80px;
+         display:grid; gap:26px; grid-template-columns:repeat(auto-fill,minmax(360px,1fr)); }
+  figure { margin:0; background:#171a21; border:1px solid #242833; border-radius:12px; overflow:hidden; }
+  .pair { display:grid; grid-template-columns:1fr 132px; gap:1px; background:#242833; }
+  .pair a { display:block; background:#0f1115; overflow:hidden; }
+  .pair img { display:block; width:100%; }
+  .pair .d { aspect-ratio:16/10; object-fit:cover; object-position:top; }
+  .pair .m { aspect-ratio:390/844; object-fit:cover; object-position:top; }
+  figcaption { padding:11px 14px; display:flex; justify-content:space-between;
+               align-items:baseline; gap:10px; font-size:13.5px; }
+  figcaption b { font-weight:600; }
+  code { color:#7f8896; font:12px/1 ui-monospace,Menlo,Consolas,monospace; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Template screenshots</h1>
+  <p>
+    Full-page desktop render and mobile viewport for all 26 templates, captured from
+    <code>portfolio.html?preview=1&amp;t=&lt;id&gt;</code> with the sample portfolio record.
+  </p>
+</header>
+<h2>Cybersecurity templates</h2>
+<main id="cyber"></main>
+<h2>Animated &amp; illustrated templates</h2>
+<main id="animated"></main>
+<h2>New premium templates</h2>
+<main id="new"></main>
+<h2>Original templates</h2>
+<main id="classic"></main>
+
+<script>
+(function () {
+  var list = [
+    ["monochrome","Monochrome","template-18",1],["paper-ink","Paper &amp; Ink","template-19",1],
+    ["swiss-grid","Swiss Grid","template-20",1],["brutalist","Brutalist","template-21",1],
+    ["zenfolio","Zenfolio","template-22",1],["operator","Operator","template-23",1],
+    ["archive","Archive","template-24",1],["data-journal","Data Journal","template-25",1],
+    ["web-retro","Web Retro","template-26",1],["signature","Signature","template-27",1],
+    ["studio","Studio","template-1",0],["vcard","vCard","template-2",0],
+    ["developer-cv","Developer CV","template-3",0],["agency","Agency","template-4",0],
+    ["cyber-elite","Cyber Elite","template-5",0],["sidebar","Sidebar","template-6",0],
+    ["minimal","Minimal","template-7",0]
+  ];
+  var animated = [
+    ["prism","Prism","template-28"],["sketchbook","Sketchbook","template-29"],
+    ["nebula","Nebula","template-30"],["blueprint","Blueprint","template-31"],
+    ["origami","Origami","template-32"]
+  ];
+  var cyber = [
+    ["sentinel","Sentinel","template-33"],["cipher","Cipher","template-34"],
+    ["gridlock","Gridlock","template-35"],["vault","Vault","template-36"]
+  ];
+  function card(s) {
+    return '<figure><div class="pair">' +
+      '<a href="' + s[0] + '-desktop.jpg"><img class="d" src="' + s[0] + '-desktop.jpg" alt="' + s[1] + ' desktop" loading="lazy"></a>' +
+      '<a href="' + s[0] + '-mobile.jpg"><img class="m" src="' + s[0] + '-mobile.jpg" alt="' + s[1] + ' mobile" loading="lazy"></a>' +
+      '</div><figcaption><b>' + s[1] + '</b><code>' + s[2] + '</code></figcaption></figure>';
+  }
+  document.getElementById("cyber").innerHTML = cyber.map(function (s) { return card([s[0], s[1], s[2]]); }).join("");
+  document.getElementById("animated").innerHTML = animated.map(function (s) { return card([s[0], s[1], s[2]]); }).join("");
+  document.getElementById("new").innerHTML = list.filter(function (s) { return s[3]; }).map(card).join("");
+  document.getElementById("classic").innerHTML = list.filter(function (s) { return !s[3]; }).map(card).join("");
+})();
+</script>
+</body>
+</html>
