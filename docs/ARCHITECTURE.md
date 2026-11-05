@@ -19,16 +19,22 @@ dependencies.
 index.html                  Editor: template selector + content editor + live preview
 portfolio.html              Public/preview page: renders one portfolio from a slug or the draft
 assets/css/app.css          Editor chrome only (not template styles)
-assets/css/template-*.css   One isolated stylesheet per template
+templates/<slug>/           One self-contained folder per template:
+                              index.html     standalone page
+                              style.css      isolated stylesheet
+                              template.js    self-registering module
+                              thumbnail.svg  selector preview
+                              meta.json      id / name / slug
 assets/js/utils.js          Shared helpers (escaping, images, links, dates, paragraphs)
 assets/js/anim.js           Intersection Observer reveal + prefers-reduced-motion
 assets/js/adapter.js        Normalises raw portfolio data into one shared object
-assets/js/registry.js       Template metadata (id, name, description, css, js, thumb)
+assets/js/registry.js       Template metadata (id, name, description, dir, css, js, thumb)
 assets/js/store.js          Draft + published persistence (localStorage by default)
 assets/js/renderer.js       Builds the standalone document / mounts a template
+assets/js/portfolio.js      Public page boot: slug lookup or ?preview=1 draft
 assets/js/sample-data.js    Example record used before a user edits anything
-assets/js/template-*.js     One self-registering template module per template
-assets/thumbnails/*.svg     One unique SVG preview per template
+
+
 tools/gen-thumbnails.mjs    Regenerates the thumbnails
 tools/test-suite.mjs        Headless pipeline + template test suite
 ```
@@ -105,10 +111,10 @@ never invented.
 
 Add a template by:
 
-1. Creating `assets/js/template-<id>-<name>.js` that sets
+1. Creating `templates/<slug>/template.js` that sets
    `CW.templates["<id>"] = { id, render(data), init?(root, data) }`.
-2. Creating `assets/css/template-<id>-<name>.css` with a unique prefix.
-3. Adding a thumbnail in `assets/thumbnails/<id>.svg`.
+2. Creating `templates/<slug>/style.css` with a unique prefix.
+3. Adding `templates/<slug>/thumbnail.svg` and `meta.json`.
 4. Adding one entry to the `templates` array in `assets/js/registry.js`.
 
 The editor selector, the live preview, the full-page preview and the public page
