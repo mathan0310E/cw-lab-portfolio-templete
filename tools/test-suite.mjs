@@ -56,10 +56,15 @@ function load(rel) {
 }
 CORE.forEach(load);
 
-const templateFiles = fs.readdirSync(path.join(ROOT, "assets/js"))
-  .filter((f) => /^template-\d+-.*\.js$/.test(f))
-  .sort((a, b) => parseInt(a.match(/template-(\d+)/)[1], 10) - parseInt(b.match(/template-(\d+)/)[1], 10));
-templateFiles.forEach((f) => load("assets/js/" + f));
+// Each template lives in templates/<slug>/ with template.js + style.css.
+const templateDirs = fs.readdirSync(path.join(ROOT, "templates"))
+  .filter((d) => fs.existsSync(path.join(ROOT, "templates", d, "template.js")))
+  .sort((a, b) => {
+    const ra = JSON.parse(fs.readFileSync(path.join(ROOT, "templates", a, "meta.json"), "utf8"));
+    const rb = JSON.parse(fs.readFileSync(path.join(ROOT, "templates", b, "meta.json"), "utf8"));
+    return parseInt(ra.id.match(/(\d+)/)[1], 10) - parseInt(rb.id.match(/(\d+)/)[1], 10);
+  });
+templateDirs.forEach((d) => load("templates/" + d + "/template.js"));
 
 const CW = sandbox.window.CW;
 
@@ -217,7 +222,8 @@ check("empty arrays present", Array.isArray(empty.projects) && Array.isArray(emp
 check("empty has flags false", empty.has.projects === false && empty.has.experience === false);
 
 /* ---------- 8. CSS isolation (no global/broad selectors) ---------- */
-const cssFiles = fs.readdirSync(path.join(ROOT, "assets/css")).filter((f) => f.startsWith("template-"));
+const cssFiles = templateDirs.map((d) => d + "/style.css");
+const cssPath = (f) => path.join(ROOT, "templates", f);
 const prefixById = {
   "template-1": "cw-studio-", "template-2": "cw-vcard-", "template-3": "cw-devcv-",
   "template-4": "cw-agency-", "template-5": "cw-cyber-", "template-6": "cw-sidebar-",
@@ -230,8 +236,8 @@ const prefixById = {
   "template-35": "cw-gridlock-", "template-36": "cw-vault-"
 };
 for (const f of cssFiles) {
-  const id = "template-" + f.match(/template-(\d+)/)[1];
-  const css = fs.readFileSync(path.join(ROOT, "assets/css", f), "utf8");
+  const id = JSON.parse(fs.readFileSync(path.join(ROOT, "templates", f.split("/")[0], "meta.json"), "utf8")).id;
+  const css = fs.readFileSync(cssPath(f), "utf8");
   const prefix = prefixById[id];
   // Every rule selector must reference the template prefix (or be a reduced-motion helper).
   const selectors = css.replace(/\/\*[\s\S]*?\*\//g, "").match(/[^{}]+\{/g) || [];
@@ -255,16 +261,16 @@ for (const f of cssFiles) {
 
 /* ---------- 9. reduced-motion + responsive coverage ---------- */
 for (const f of cssFiles) {
-  const id = "template-" + f.match(/template-(\d+)/)[1];
-  const css = fs.readFileSync(path.join(ROOT, "assets/css", f), "utf8");
+  const id = JSON.parse(fs.readFileSync(path.join(ROOT, "templates", f.split("/")[0], "meta.json"), "utf8")).id;
+  const css = fs.readFileSync(cssPath(f), "utf8");
   check(id + " respects prefers-reduced-motion", css.indexOf("cw-reduced-motion") > -1);
   check(id + " has mobile breakpoint", /max-width:\s*(767|600|900|1023)px/.test(css));
 }
 
 /* ---------- 10. no fixed widths that force horizontal overflow ---------- */
 for (const f of cssFiles) {
-  const id = "template-" + f.match(/template-(\d+)/)[1];
-  const css = fs.readFileSync(path.join(ROOT, "assets/css", f), "utf8");
+  const id = JSON.parse(fs.readFileSync(path.join(ROOT, "templates", f.split("/")[0], "meta.json"), "utf8")).id;
+  const css = fs.readFileSync(cssPath(f), "utf8");
   check(id + " no hard px width on body/page", !/\.cw-[a-z]+-page\s*\{[^}]*width:\s*\d{3,}px/.test(css));
 }
 

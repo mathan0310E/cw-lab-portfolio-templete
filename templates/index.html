@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Template Folders — CWLABS Portfolio Builder</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <style>
+    :root { --ink: #111827; --dim: #5b6472; --line: #e4e8ef; --bg: #fbfbfd; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 56px 24px 96px; background: var(--bg); color: var(--ink);
+      font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 1180px; margin: 0 auto; }
+    h1 { margin: 0 0 10px; font-size: clamp(26px, 4vw, 38px); letter-spacing: -.02em; }
+    .lede { margin: 0 0 8px; color: var(--dim); max-width: 74ch; }
+    .note { margin: 0 0 40px; color: var(--dim); font-size: 14px; max-width: 74ch; }
+    code {
+      font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .9em;
+      background: #eef1f6; padding: 1px 5px; border-radius: 4px;
+    }
+    .back { display: inline-block; margin-bottom: 28px; font-size: 14px; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .back:hover { border-bottom-color: var(--ink); }
+    .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+    .card {
+      display: block; text-decoration: none; color: inherit; background: #fff;
+      border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(16, 24, 40, .1); border-color: #cfd6e2; }
+    .card img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; background: #eef1f5; }
+    .body { padding: 13px 15px 16px; }
+    .row { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+    .name { font-weight: 620; letter-spacing: -.01em; }
+    .id { font-size: 11.5px; color: var(--dim); font-family: ui-monospace, Menlo, Consolas, monospace; }
+    .files { margin: 9px 0 0; font-size: 12px; color: var(--dim); font-family: ui-monospace, Menlo, Consolas, monospace; }
+    @media (prefers-reduced-motion: reduce) { .card { transition: none; } .card:hover { transform: none; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="../index.html">&larr; Back to the builder</a>
+    <h1>Template folders</h1>
+    <p class="lede">
+      Every template is a self-contained folder. Each one holds its own page, stylesheet,
+      script and thumbnail, and can be opened on its own.
+    </p>
+    <p class="note">
+      A folder contains <code>index.html</code>, <code>style.css</code>, <code>template.js</code>
+      and <code>thumbnail.svg</code>. The pages render live sample content through the shared
+      engine in <code>assets/js/</code>, so what you see here is the same code path the editor
+      and published portfolios use.
+    </p>
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+      // Folder order mirrors the registry, so new templates appear automatically.
+      var dirs = [
+        ["studio","template-1","Studio"],["vcard","template-2","vCard"],
+        ["developer-cv","template-3","Developer CV"],["agency","template-4","Agency"],
+        ["cyber-elite","template-5","Cyber Elite"],["sidebar","template-6","Sidebar"],
+        ["minimal","template-7","Minimal"],
+        ["monochrome","template-18","Monochrome"],["paper-ink","template-19","Paper & Ink"],
+        ["swiss-grid","template-20","Swiss Grid"],["brutalist","template-21","Brutalist"],
+        ["zenfolio","template-22","Zenfolio"],["operator","template-23","Operator"],
+        ["archive","template-24","Archive"],["data-journal","template-25","Data Journal"],
+        ["web-retro","template-26","Web Retro"],["signature","template-27","Signature"],
+        ["prism","template-28","Prism"],["sketchbook","template-29","Sketchbook"],
+        ["nebula","template-30","Nebula"],["blueprint","template-31","Blueprint"],
+        ["origami","template-32","Origami"],
+        ["sentinel","template-33","Sentinel"],["cipher","template-34","Cipher"],
+        ["gridlock","template-35","Gridlock"],["vault","template-36","Vault"]
+      ];
+      document.getElementById("grid").innerHTML = dirs.map(function (d) {
+        return '<a class="card" href="' + d[0] + '/index.html">' +
+          '<img src="' + d[0] + '/thumbnail.svg" alt="' + d[2] + ' template thumbnail" loading="lazy" decoding="async">' +
+          '<div class="body"><div class="row"><span class="name">' + d[2] + '</span>' +
+          '<span class="id">' + d[1] + '</span></div>' +
+          '<p class="files">' + d[0] + '/</p></div></a>';
+      }).join("");
+    })();
+  </script>
+</body>
+</html>

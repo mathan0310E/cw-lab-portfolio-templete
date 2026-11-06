@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blueprint — CWLABS Portfolio Template</title>
+  <meta name="description" content="Blueprint portfolio template, rendered with sample content.">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="up" href="../index.html">
+  <!-- Shared rendering engine, used by the editor and every published portfolio. -->
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    /* Wrapper chrome only — never touches the template's own styles. */
+    .cw-standalone-back {
+      position: fixed; left: 14px; bottom: 14px; z-index: 2147483000;
+      font: 500 12px/1 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      letter-spacing: .02em; text-decoration: none; padding: 9px 13px;
+      border-radius: 999px; color: #fff; background: rgba(17, 17, 17, .82);
+      border: 1px solid rgba(255, 255, 255, .22); backdrop-filter: blur(6px);
+      transition: background .2s ease, transform .2s ease;
+    }
+    .cw-standalone-back:hover { background: rgba(17, 17, 17, .95); transform: translateY(-1px); }
+    @media (prefers-reduced-motion: reduce) { .cw-standalone-back { transition: none; } }
+  </style>
+</head>
+<body class="cw-template-body" data-template="template-31">
+  <div id="cw-root" class="cw-template-root" data-template="template-31"></div>
+  <a class="cw-standalone-back" href="../index.html">&larr; All templates</a>
+
+  <script src="../../assets/js/utils.js"></script>
+  <script src="../../assets/js/anim.js"></script>
+  <script src="../../assets/js/adapter.js"></script>
+  <script src="../../assets/js/sample-data.js"></script>
+  <script src="./template.js"></script>
+  <script>
+    (function () {
+      "use strict";
+      var ID = "template-31";
+      var root = document.getElementById("cw-root");
+      var mod = window.CW && CW.templates && CW.templates[ID];
+      if (!mod || typeof mod.render !== "function") {
+        root.innerHTML = "<p style='font-family:system-ui;padding:48px'>Template module failed to load.</p>";
+        return;
+      }
+      if (CW.anim && CW.anim.applyMotionFlag) CW.anim.applyMotionFlag();
+      var data = CW.adapter.normalize(window.CW_SAMPLE_DATA, ID);
+      root.innerHTML = mod.render(data);
+      if (typeof mod.init === "function") mod.init(root, data);
+    })();
+  </script>
+</body>
+</html>

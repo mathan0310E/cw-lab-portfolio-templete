@@ -16,6 +16,7 @@ python3 -m http.server 12000
 |-----|-----------|
 | `index.html` | The editor |
 | `preview.html` | Gallery of all 26 templates with thumbnails and links |
+| `templates/` | One self-contained folder per template |
 | `portfolio.html?preview=1` | Full-page preview of your current draft |
 | `portfolio.html?preview=1&t=<id>` | Full-page preview of the draft through one template |
 | `portfolio.html?u=<slug>` | Published public portfolio |
@@ -65,16 +66,18 @@ Full detail: `docs/ARCHITECTURE.md`.
 
 ```bash
 node tools/test-suite.mjs      # 1506 checks, 26 templates x 10 scenarios
-node tools/gen-thumbnails.mjs  # regenerate assets/thumbnails/*.svg
+node tools/gen-thumbnails.mjs  # regenerate templates/*/thumbnail.svg
 ```
 
 Results and methodology: `docs/TESTING.md`.
 
 ## Adding a template
 
-1. `assets/js/template-<id>-<name>.js` → `CW.templates["<id>"] = { id, render, init? }`
-2. `assets/css/template-<id>-<name>.css` → unique class prefix
-3. `assets/thumbnails/<id>.svg`
+1. `templates/<slug>/template.js` → `CW.templates["<id>"] = { id, render, init? }`
+2. `templates/<slug>/style.css` → unique class prefix
+3. `templates/<slug>/thumbnail.svg` + `meta.json`
+4. `templates/<slug>/index.html` → standalone page (sample data)
+5. Register the folder in `assets/js/registry.js`
 4. one entry in the `templates` array in `assets/js/registry.js`
 
 The selector, previews and public page pick it up with no other changes.

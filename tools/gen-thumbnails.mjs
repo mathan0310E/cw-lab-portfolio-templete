@@ -1,13 +1,14 @@
 /*
  * CWLABS — thumbnail generator.
  * Produces one 320x200 SVG preview per template so the selector shows a
- * distinct miniature of each design language. Run: node tools/gen-thumbnails.mjs
+ * distinct miniature of each design language. Each thumbnail is written into
+ * that template's own folder as `thumbnail.svg`.
+ * Run: node tools/gen-thumbnails.mjs
  */
 import fs from "fs";
 import path from "path";
 
-const out = path.resolve("assets/thumbnails");
-fs.mkdirSync(out, { recursive: true });
+const out = path.resolve("templates");
 
 const W = 320, H = 200;
 
@@ -275,9 +276,25 @@ t["template-36"] = wrap("#0d1117",
   bar(18, 134, 84, 2, "#5eead4") +
   bar(18, 168, 284, 1, "#94b0cd", ' opacity="0.2"'));
 
+// Map template id -> folder slug, taken from the registry so the two can't drift.
+const registry = fs.readFileSync(path.resolve("assets/js/registry.js"), "utf8");
+const dirFor = {};
+for (const m of registry.matchAll(/id:\s*"(template-\d+)"[\s\S]*?dir:\s*D \+ "([^"]+)"/g)) {
+  dirFor[m[1]] = m[2];
+}
+
 let count = 0;
+const missing = [];
 for (const [id, svg] of Object.entries(t)) {
-  fs.writeFileSync(path.join(out, id + ".svg"), svg + "\n");
+  const dir = dirFor[id];
+  if (!dir) { missing.push(id); continue; }
+  const dest = path.join(out, dir);
+  fs.mkdirSync(dest, { recursive: true });
+  fs.writeFileSync(path.join(dest, "thumbnail.svg"), svg + "\n");
   count++;
 }
-console.log("wrote", count, "thumbnails to", out);
+if (missing.length) {
+  console.error("no folder in registry for:", missing.join(", "));
+  process.exit(1);
+}
+console.log("wrote", count, "thumbnails into", path.relative(process.cwd(), out) + "/*/thumbnail.svg");

@@ -8,7 +8,8 @@
  * animated templates (template-28 .. template-32) and four cybersecurity
  * templates with futuristic animation (template-33 .. template-36).
  *
- * Each entry points at an isolated stylesheet + script. A template script
+ * Every template lives in its own folder under `templates/<slug>/` with an
+ * `index.html`, `style.css`, `template.js` and `thumbnail.svg`. The script
  * registers `CW.templates[id] = { id, render, init? }`. Templates never share
  * CSS selectors: every class is namespaced per template.
  */
@@ -18,44 +19,42 @@
   var CW = (window.CW = window.CW || {});
   CW.templates = CW.templates || {};
 
-  var C = "assets/css/";
-  var J = "assets/js/";
-  var T = "assets/thumbnails/";
+  var D = "templates/";
 
   var templates = [
     // --- Existing CWLABS templates (ids preserved) -------------------------
-    { id: "template-1", name: "Studio", description: "Bold studio landing with a full-bleed cover and overlapping portrait.", css: C + "template-1-studio.css", js: J + "template-1-studio.js", thumb: T + "template-1.svg", tag: "Classic", accent: "#4f46e5" },
-    { id: "template-2", name: "vCard", description: "Compact digital business card with a sticky identity rail.", css: C + "template-2-vcard.css", js: J + "template-2-vcard.js", thumb: T + "template-2.svg", tag: "Classic", accent: "#0ea5e9" },
-    { id: "template-3", name: "Developer CV", description: "Dense two-column CV tuned for engineering résumés.", css: C + "template-3-developer-cv.css", js: J + "template-3-developer-cv.js", thumb: T + "template-3.svg", tag: "Classic", accent: "#22c55e" },
-    { id: "template-4", name: "Agency", description: "Creative agency grid with a services-style capability wall.", css: C + "template-4-agency.css", js: J + "template-4-agency.js", thumb: T + "template-4.svg", tag: "Classic", accent: "#f97316" },
-    { id: "template-5", name: "Cyber Elite", description: "Dark security-themed profile with terminal accents.", css: C + "template-5-cyber-elite.css", js: J + "template-5-cyber-elite.js", thumb: T + "template-5.svg", tag: "Classic", accent: "#06b6d4" },
-    { id: "template-6", name: "Sidebar", description: "Persistent left sidebar navigation with a scrollable content column.", css: C + "template-6-sidebar.css", js: J + "template-6-sidebar.js", thumb: T + "template-6.svg", tag: "Classic", accent: "#6366f1" },
-    { id: "template-7", name: "Minimal", description: "Quiet single-column layout with generous whitespace.", css: C + "template-7-minimal.css", js: J + "template-7-minimal.js", thumb: T + "template-7.svg", tag: "Classic", accent: "#64748b" },
+    { id: "template-1", name: "Studio", description: "Bold studio landing with a full-bleed cover and overlapping portrait.", dir: D + "studio/", css: D + "studio/style.css", js: D + "studio/template.js", thumb: D + "studio/thumbnail.svg", tag: "Classic", accent: "#4f46e5" },
+    { id: "template-2", name: "vCard", description: "Compact digital business card with a sticky identity rail.", dir: D + "vcard/", css: D + "vcard/style.css", js: D + "vcard/template.js", thumb: D + "vcard/thumbnail.svg", tag: "Classic", accent: "#0ea5e9" },
+    { id: "template-3", name: "Developer CV", description: "Dense two-column CV tuned for engineering résumés.", dir: D + "developer-cv/", css: D + "developer-cv/style.css", js: D + "developer-cv/template.js", thumb: D + "developer-cv/thumbnail.svg", tag: "Classic", accent: "#22c55e" },
+    { id: "template-4", name: "Agency", description: "Creative agency grid with a services-style capability wall.", dir: D + "agency/", css: D + "agency/style.css", js: D + "agency/template.js", thumb: D + "agency/thumbnail.svg", tag: "Classic", accent: "#f97316" },
+    { id: "template-5", name: "Cyber Elite", description: "Dark security-themed profile with terminal accents.", dir: D + "cyber-elite/", css: D + "cyber-elite/style.css", js: D + "cyber-elite/template.js", thumb: D + "cyber-elite/thumbnail.svg", tag: "Classic", accent: "#06b6d4" },
+    { id: "template-6", name: "Sidebar", description: "Persistent left sidebar navigation with a scrollable content column.", dir: D + "sidebar/", css: D + "sidebar/style.css", js: D + "sidebar/template.js", thumb: D + "sidebar/thumbnail.svg", tag: "Classic", accent: "#6366f1" },
+    { id: "template-7", name: "Minimal", description: "Quiet single-column layout with generous whitespace.", dir: D + "minimal/", css: D + "minimal/style.css", js: D + "minimal/template.js", thumb: D + "minimal/thumbnail.svg", tag: "Classic", accent: "#64748b" },
 
     // --- New premium templates --------------------------------------------
-    { id: "template-18", name: "Monochrome", description: "Swiss minimalism and editorial technology in pure black and white.", css: C + "template-18-monochrome.css", js: J + "template-18-monochrome.js", thumb: T + "template-18.svg", tag: "New", accent: "#111111" },
-    { id: "template-19", name: "Paper & Ink", description: "Warm ivory editorial magazine with forest-green ink and serif headings.", css: C + "template-19-paper.css", js: J + "template-19-paper.js", thumb: T + "template-19.svg", tag: "New", accent: "#1f3d2b" },
-    { id: "template-20", name: "Swiss Grid", description: "International typographic style with a numbered red-and-black grid.", css: C + "template-20-swiss.css", js: J + "template-20-swiss.js", thumb: T + "template-20.svg", tag: "New", accent: "#e30613" },
-    { id: "template-21", name: "Brutalist", description: "Cobalt, black and off-white digital brutalism with hard edges.", css: C + "template-21-brutalist.css", js: J + "template-21-brutalist.js", thumb: T + "template-21.svg", tag: "New", accent: "#1b35d8" },
-    { id: "template-22", name: "Zenfolio", description: "Japanese-inspired calm with vertical labels and olive accents.", css: C + "template-22-zen.css", js: J + "template-22-zen.js", thumb: T + "template-22.svg", tag: "New", accent: "#6b7355" },
-    { id: "template-23", name: "Operator", description: "Cybersecurity researcher archive with severity labels and CTF log.", css: C + "template-23-operator.css", js: J + "template-23-operator.js", thumb: T + "template-23.svg", tag: "New", accent: "#3ddc84" },
-    { id: "template-24", name: "Archive", description: "Typography-led professional archive built around a career timeline.", css: C + "template-24-archive.css", js: J + "template-24-archive.js", thumb: T + "template-24.svg", tag: "New", accent: "#1e293b" },
-    { id: "template-25", name: "Data Journal", description: "Data-science research journal with structured project case studies.", css: C + "template-25-datajournal.css", js: J + "template-25-datajournal.js", thumb: T + "template-25.svg", tag: "New", accent: "#0f766e" },
-    { id: "template-26", name: "Web Retro", description: "Retro desktop-inspired personal site with a windowed interface.", css: C + "template-26-retro.css", js: J + "template-26-retro.js", thumb: T + "template-26.svg", tag: "New", accent: "#c0392b" },
-    { id: "template-27", name: "Signature", description: "Premium personal branding in black and warm yellow.", css: C + "template-27-signature.css", js: J + "template-27-signature.js", thumb: T + "template-27.svg", tag: "New", accent: "#f2b705" },
+    { id: "template-18", name: "Monochrome", description: "Swiss minimalism and editorial technology in pure black and white.", dir: D + "monochrome/", css: D + "monochrome/style.css", js: D + "monochrome/template.js", thumb: D + "monochrome/thumbnail.svg", tag: "New", accent: "#111111" },
+    { id: "template-19", name: "Paper & Ink", description: "Warm ivory editorial magazine with forest-green ink and serif headings.", dir: D + "paper-ink/", css: D + "paper-ink/style.css", js: D + "paper-ink/template.js", thumb: D + "paper-ink/thumbnail.svg", tag: "New", accent: "#1f3d2b" },
+    { id: "template-20", name: "Swiss Grid", description: "International typographic style with a numbered red-and-black grid.", dir: D + "swiss-grid/", css: D + "swiss-grid/style.css", js: D + "swiss-grid/template.js", thumb: D + "swiss-grid/thumbnail.svg", tag: "New", accent: "#e30613" },
+    { id: "template-21", name: "Brutalist", description: "Cobalt, black and off-white digital brutalism with hard edges.", dir: D + "brutalist/", css: D + "brutalist/style.css", js: D + "brutalist/template.js", thumb: D + "brutalist/thumbnail.svg", tag: "New", accent: "#1b35d8" },
+    { id: "template-22", name: "Zenfolio", description: "Japanese-inspired calm with vertical labels and olive accents.", dir: D + "zenfolio/", css: D + "zenfolio/style.css", js: D + "zenfolio/template.js", thumb: D + "zenfolio/thumbnail.svg", tag: "New", accent: "#6b7355" },
+    { id: "template-23", name: "Operator", description: "Cybersecurity researcher archive with severity labels and CTF log.", dir: D + "operator/", css: D + "operator/style.css", js: D + "operator/template.js", thumb: D + "operator/thumbnail.svg", tag: "New", accent: "#3ddc84" },
+    { id: "template-24", name: "Archive", description: "Typography-led professional archive built around a career timeline.", dir: D + "archive/", css: D + "archive/style.css", js: D + "archive/template.js", thumb: D + "archive/thumbnail.svg", tag: "New", accent: "#1e293b" },
+    { id: "template-25", name: "Data Journal", description: "Data-science research journal with structured project case studies.", dir: D + "data-journal/", css: D + "data-journal/style.css", js: D + "data-journal/template.js", thumb: D + "data-journal/thumbnail.svg", tag: "New", accent: "#0f766e" },
+    { id: "template-26", name: "Web Retro", description: "Retro desktop-inspired personal site with a windowed interface.", dir: D + "web-retro/", css: D + "web-retro/style.css", js: D + "web-retro/template.js", thumb: D + "web-retro/thumbnail.svg", tag: "New", accent: "#c0392b" },
+    { id: "template-27", name: "Signature", description: "Premium personal branding in black and warm yellow.", dir: D + "signature/", css: D + "signature/style.css", js: D + "signature/template.js", thumb: D + "signature/thumbnail.svg", tag: "New", accent: "#f2b705" },
 
     // --- Animated, illustration-led templates ------------------------------
-    { id: "template-28", name: "Prism", description: "Aurora gradients, a refracting prism illustration and pointer parallax.", css: C + "template-28-prism.css", js: J + "template-28-prism.js", thumb: T + "template-28.svg", tag: "Animated", accent: "#35d0ba" },
-    { id: "template-29", name: "Sketchbook", description: "Hand-drawn doodles, wobbly ink outlines and taped notes on ruled paper.", css: C + "template-29-sketchbook.css", js: J + "template-29-sketchbook.js", thumb: T + "template-29.svg", tag: "Animated", accent: "#d9542b" },
-    { id: "template-30", name: "Nebula", description: "Animated starfield constellation, illustrated planet and orbit motifs.", css: C + "template-30-nebula.css", js: J + "template-30-nebula.js", thumb: T + "template-30.svg", tag: "Animated", accent: "#7fe9ff" },
-    { id: "template-31", name: "Blueprint", description: "Engineering drafting sheet whose drawing plots itself as you scroll.", css: C + "template-31-blueprint.css", js: J + "template-31-blueprint.js", thumb: T + "template-31.svg", tag: "Animated", accent: "#0b3d68" },
-    { id: "template-32", name: "Origami", description: "Folded-paper facets that crease into place, with unfolding project panels.", css: C + "template-32-origami.css", js: J + "template-32-origami.js", thumb: T + "template-32.svg", tag: "Animated", accent: "#2b3a8f" },
+    { id: "template-28", name: "Prism", description: "Aurora gradients, a refracting prism illustration and pointer parallax.", dir: D + "prism/", css: D + "prism/style.css", js: D + "prism/template.js", thumb: D + "prism/thumbnail.svg", tag: "Animated", accent: "#35d0ba" },
+    { id: "template-29", name: "Sketchbook", description: "Hand-drawn doodles, wobbly ink outlines and taped notes on ruled paper.", dir: D + "sketchbook/", css: D + "sketchbook/style.css", js: D + "sketchbook/template.js", thumb: D + "sketchbook/thumbnail.svg", tag: "Animated", accent: "#d9542b" },
+    { id: "template-30", name: "Nebula", description: "Animated starfield constellation, illustrated planet and orbit motifs.", dir: D + "nebula/", css: D + "nebula/style.css", js: D + "nebula/template.js", thumb: D + "nebula/thumbnail.svg", tag: "Animated", accent: "#7fe9ff" },
+    { id: "template-31", name: "Blueprint", description: "Engineering drafting sheet whose drawing plots itself as you scroll.", dir: D + "blueprint/", css: D + "blueprint/style.css", js: D + "blueprint/template.js", thumb: D + "blueprint/thumbnail.svg", tag: "Animated", accent: "#0b3d68" },
+    { id: "template-32", name: "Origami", description: "Folded-paper facets that crease into place, with unfolding project panels.", dir: D + "origami/", css: D + "origami/style.css", js: D + "origami/template.js", thumb: D + "origami/thumbnail.svg", tag: "Animated", accent: "#2b3a8f" },
 
     // --- Cybersecurity, futuristic animation -------------------------------
-    { id: "template-33", name: "Sentinel", description: "SOC monitoring HUD with a sweeping radar scope and live telemetry.", css: C + "template-33-sentinel.css", js: J + "template-33-sentinel.js", thumb: T + "template-33.svg", tag: "Cyber", accent: "#22d3ee" },
-    { id: "template-34", name: "Cipher", description: "Cryptography workstation: hex-rain, byte offsets and a text-decrypt hero.", css: C + "template-34-cipher.css", js: J + "template-34-cipher.js", thumb: T + "template-34.svg", tag: "Cyber", accent: "#c8ff3d" },
-    { id: "template-35", name: "Gridlock", description: "Cyberpunk dossier with chromatic glitch, scanlines and wireframe grid.", css: C + "template-35-gridlock.css", js: J + "template-35-gridlock.js", thumb: T + "template-35.svg", tag: "Cyber", accent: "#ff2d95" },
-    { id: "template-36", name: "Vault", description: "Zero-trust architecture with a rotating wireframe shield and perimeter trace.", css: C + "template-36-vault.css", js: J + "template-36-vault.js", thumb: T + "template-36.svg", tag: "Cyber", accent: "#5eead4" }
+    { id: "template-33", name: "Sentinel", description: "SOC monitoring HUD with a sweeping radar scope and live telemetry.", dir: D + "sentinel/", css: D + "sentinel/style.css", js: D + "sentinel/template.js", thumb: D + "sentinel/thumbnail.svg", tag: "Cyber", accent: "#22d3ee" },
+    { id: "template-34", name: "Cipher", description: "Cryptography workstation: hex-rain, byte offsets and a text-decrypt hero.", dir: D + "cipher/", css: D + "cipher/style.css", js: D + "cipher/template.js", thumb: D + "cipher/thumbnail.svg", tag: "Cyber", accent: "#c8ff3d" },
+    { id: "template-35", name: "Gridlock", description: "Cyberpunk dossier with chromatic glitch, scanlines and wireframe grid.", dir: D + "gridlock/", css: D + "gridlock/style.css", js: D + "gridlock/template.js", thumb: D + "gridlock/thumbnail.svg", tag: "Cyber", accent: "#ff2d95" },
+    { id: "template-36", name: "Vault", description: "Zero-trust architecture with a rotating wireframe shield and perimeter trace.", dir: D + "vault/", css: D + "vault/style.css", js: D + "vault/template.js", thumb: D + "vault/thumbnail.svg", tag: "Cyber", accent: "#5eead4" }
   ];
 
   var byId = {};
